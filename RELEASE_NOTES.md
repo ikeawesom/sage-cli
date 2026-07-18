@@ -27,7 +27,7 @@ python -m pipx ensurepath
 Open a new terminal, then install Sage:
 
 ```
-pipx install sagecli
+pipx install litellm-sage
 ```
 
 Run it:
@@ -43,7 +43,7 @@ The first time you run `sage`, it will start a short guided setup to collect you
 - An OpenAI-compatible API endpoint URL
 - An API key for that endpoint
 
-To upgrade later: `pipx upgrade sagecli`
+To upgrade later: `pipx upgrade litellm-sage`
 
 ---
 

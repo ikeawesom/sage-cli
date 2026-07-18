@@ -46,7 +46,7 @@ clash with anything else on your machine.
 
 3. **Install Sage:**
    ```
-   pipx install sagecli
+   pipx install litellm-sage
    ```
 
 4. **Test it** — type this and press Enter:
@@ -58,7 +58,7 @@ clash with anything else on your machine.
    The first time you actually run `sage` (see below), it will start a
    short guided setup to collect your endpoint URL and API key.
 
-You only do this once. To upgrade later, run `pipx upgrade sagecli`.
+You only do this once. To upgrade later, run `pipx upgrade litellm-sage`.
 
 ---
 
@@ -237,7 +237,7 @@ Just point them at this same guide, or tell them:
    ```
 2. Open a new terminal, then install Sage:
    ```
-   pipx install sagecli
+   pipx install litellm-sage
    ```
 3. Run `sage` — it walks them through entering their own endpoint URL and
    API key (see "Your Settings" above), then starts right up.
@@ -282,7 +282,7 @@ model supports image analysis.
 ## 📝 Quick Reference Card
 
 ```
-Install:           pipx install sagecli
+Install:           pipx install litellm-sage
 First run:         sage   (walks you through setup — endpoint URL + API key)
 Start Sage:        sage
 Ask something:     just type it and press Enter
