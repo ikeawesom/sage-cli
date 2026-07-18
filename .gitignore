@@ -1,0 +1,14 @@
+# .gitignore
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.DS_Store
+graphify-out/
+.pytest_cache/
+nul
+dist/
+build/
+demo/

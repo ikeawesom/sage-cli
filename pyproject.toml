@@ -1,0 +1,43 @@
+# pyproject.toml
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sagecli"
+version = "0.1.0"
+description = "Sage - a terminal AI assistant for OpenAI-compatible API endpoints"
+readme = "README.md"
+authors = [{ name = "ikeawesom" }]
+keywords = ["cli", "ai", "assistant", "llm", "terminal"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "openai>=1.30.0",
+    "python-dotenv>=1.0.0",
+    "httpx>=0.27.0",
+    "urllib3>=2.0.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "build"]
+
+[project.scripts]
+sage = "sage.cli:main"
+
+[tool.setuptools]
+packages = ["sage"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
