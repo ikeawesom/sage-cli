@@ -55,29 +55,41 @@ clash with anything else on your machine.
    ```
    If you see a version number, you're ready! 🎉
 
+   The first time you actually run `sage` (see below), it will start a
+   short guided setup to collect your endpoint URL and API key.
+
 You only do this once. To upgrade later, run `pipx upgrade sagecli`.
 
 ---
 
 ## ⚙️ Your Settings
 
-Sage reads its settings from a file at:
+The first time you run `sage` and it can't find a settings file, it
+automatically starts a short guided setup right there in the terminal:
+
+1. It creates a `.sage` folder in your user folder for you.
+2. It asks for your **endpoint URL** and **API key** — just answer the two
+   questions.
+3. Everything else (`MODEL`, `IMAGE_MODEL`, `VERIFY_TLS`) is filled in with
+   sensible defaults automatically.
+
+That's it — once setup finishes, Sage starts normally and remembers your
+answers for next time. If you quit partway through (e.g. with `Ctrl + C`),
+no settings file is created, so the same guided setup will simply run again
+the next time you start `sage`.
+
+Sage stores these settings in a file at:
 
 ```
 C:\Users\<your-name>\.sage\.env
 ```
 
-This file doesn't exist yet after a fresh `pipx install` — you need to
-create it yourself, once. Sage checks for it every time it starts; if the
-required settings aren't there, it won't run and will tell you what's
-missing.
+**To change your settings later**, you can edit this file directly instead
+of redoing the guided setup:
 
-**To create it:**
-
-1. Create a folder called `.sage` in your user folder (`C:\Users\<your-name>\.sage`).
-2. Inside it, create a text file named `.env` (make sure it's not saved as
-   `.env.txt` — in Notepad, choose "All Files" as the type when saving).
-3. Add your settings, one per line, like this:
+1. Open `.env` in a text editor (make sure it's not saved as `.env.txt` — in
+   Notepad, choose "All Files" as the type when saving).
+2. Update the values, one per line, like this:
    ```
    API_KEY=your-api-key-here
    BASE_URL=https://your-litellm-server.com
@@ -86,8 +98,7 @@ missing.
    VERIFY_TLS=true
    ```
 
-You can edit this file anytime to change your endpoint, key, or preferred
-model. The available settings are:
+The available settings are:
 
 | Setting       | What it is                                  |
 |---------------|----------------------------------------------|
@@ -228,9 +239,8 @@ Just point them at this same guide, or tell them:
    ```
    pipx install sagecli
    ```
-3. Create their own `C:\Users\<their-name>\.sage\.env` file with **their
-   own** endpoint URL and API key (see "Your Settings" above).
-4. Type `sage` to start.
+3. Run `sage` — it walks them through entering their own endpoint URL and
+   API key (see "Your Settings" above), then starts right up.
 
 Each person uses their own API key in their own `.env` file, so nobody's
 credentials are shared.
@@ -253,9 +263,10 @@ correct and that you can reach the server (e.g. you're on the right network
 or VPN if it's a private endpoint).
 
 **"[config error] Missing API_KEY" or "Missing BASE_URL"**
-Your settings file is missing a value, or doesn't exist yet. Create or edit
+This usually means your settings file exists but is missing a value — edit
 `C:\Users\<your-name>\.sage\.env` and fill in `API_KEY` and `BASE_URL` (see
-"Your Settings" above).
+"Your Settings" above). If the file doesn't exist at all, just run `sage`
+to get the guided setup.
 
 **"team not allowed to access model" / model error**
 The selected model isn't available on your endpoint. Use `/model` to pick a
@@ -272,6 +283,7 @@ model supports image analysis.
 
 ```
 Install:           pipx install sagecli
+First run:         sage   (walks you through setup — endpoint URL + API key)
 Start Sage:        sage
 Ask something:     just type it and press Enter
 Look at an image:  /attach picture.png   then ask about it

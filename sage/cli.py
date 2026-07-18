@@ -23,10 +23,11 @@ from sage import __version__
 from sage.agent import Agent
 from sage.attachments import AttachmentError, build_multimodal_message
 from sage.confirm import Confirmer
-from sage.config import ConfigError, load_config
+from sage.config import ConfigError, GLOBAL_ENV_PATH, load_config
 from sage.llm_client import LLMClient, LLMError
 from sage.modes import Mode, ModeState
 from sage.sandbox import Sandbox
+from sage.setup_wizard import run_setup_wizard
 from sage.tools import ToolRegistry, Tools
 
 from rich.table import Table
@@ -507,8 +508,25 @@ def main(argv: list[str] | None = None) -> int:
     try:
         repl = REPL(options)
     except ConfigError as exc:
-        print(f"[config error] {exc}", file=sys.stderr)
-        return 1
+        # First run: no global config yet, and a human is at the keyboard
+        # to answer prompts. Offer the setup wizard instead of just
+        # failing. A bad/incomplete existing file, or a non-interactive
+        # stdin (scripts/CI), keeps the plain config-error behavior.
+        if not GLOBAL_ENV_PATH.is_file() and sys.stdin.isatty():
+            if not run_setup_wizard():
+                print(
+                    "Setup cancelled. Run `sage` again when you're ready.",
+                    file=sys.stderr,
+                )
+                return 1
+            try:
+                repl = REPL(options)
+            except ConfigError as retry_exc:
+                print(f"[config error] {retry_exc}", file=sys.stderr)
+                return 1
+        else:
+            print(f"[config error] {exc}", file=sys.stderr)
+            return 1
     return repl.run()
 
 
