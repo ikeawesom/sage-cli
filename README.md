@@ -1,7 +1,7 @@
-# 🧙 Sage — Your AI Assistant in the Terminal
+# 🧙 Sage - Your AI Assistant in the Terminal
 
 Sage is a smart AI helper that lives in your computer's terminal. You type
-what you want in plain English, and Sage helps you get it done — reading and
+what you want in plain English, and Sage helps you get it done - reading and
 writing files, running tasks, understanding images, and even creating images.
 
 Think of it as a helpful assistant you can chat with, right in your terminal.
@@ -19,7 +19,7 @@ You need **three things** for Sage to work:
 1. **Python installed** on your computer (version 3.10 or newer). If you
    don't have it, download it from https://www.python.org/downloads/ and
    during installation, **tick the box that says "Add python.exe to PATH"**.
-2. **An API endpoint URL** — the address of your OpenAI-compatible / LiteLLM
+2. **An API endpoint URL** - the address of your OpenAI-compatible / LiteLLM
    server (for example, `https://your-litellm-server.com`).
 3. **An API key** for that endpoint.
 
@@ -34,7 +34,7 @@ Sage is installed with [pipx](https://pipx.pypa.io/), a tool that installs
 Python command-line apps in their own isolated environment so they don't
 clash with anything else on your machine.
 
-1. **Install pipx** (skip if you already have it) — open a terminal and run:
+1. **Install pipx** (skip if you already have it) - open a terminal and run:
    ```
    python -m pip install --user pipx
    python -m pipx ensurepath
@@ -49,7 +49,7 @@ clash with anything else on your machine.
    pipx install litellm-sage
    ```
 
-4. **Test it** — type this and press Enter:
+4. **Test it** - type this and press Enter:
    ```
    sage --version
    ```
@@ -68,12 +68,12 @@ The first time you run `sage` and it can't find a settings file, it
 automatically starts a short guided setup right there in the terminal:
 
 1. It creates a `.sage` folder in your user folder for you.
-2. It asks for your **endpoint URL** and **API key** — just answer the two
+2. It asks for your **endpoint URL** and **API key** - just answer the two
    questions.
 3. Everything else (`MODEL`, `IMAGE_MODEL`, `VERIFY_TLS`) is filled in with
    sensible defaults automatically.
 
-That's it — once setup finishes, Sage starts normally and remembers your
+That's it - once setup finishes, Sage starts normally and remembers your
 answers for next time. If you quit partway through (e.g. with `Ctrl + C`),
 no settings file is created, so the same guided setup will simply run again
 the next time you start `sage`.
@@ -87,7 +87,7 @@ C:\Users\<your-name>\.sage\.env
 **To change your settings later**, you can edit this file directly instead
 of redoing the guided setup:
 
-1. Open `.env` in a text editor (make sure it's not saved as `.env.txt` — in
+1. Open `.env` in a text editor (make sure it's not saved as `.env.txt` - in
    Notepad, choose "All Files" as the type when saving).
 2. Update the values, one per line, like this:
    ```
@@ -108,7 +108,7 @@ The available settings are:
 | `IMAGE_MODEL` | The model used for creating images          |
 | `VERIFY_TLS`  | Set to `false` if your server uses a private certificate |
 
-`API_KEY` and `BASE_URL` are required — Sage won't start without them.
+`API_KEY` and `BASE_URL` are required - Sage won't start without them.
 `MODEL`, `IMAGE_MODEL`, and `VERIFY_TLS` are optional and fall back to
 sensible defaults if you leave them out.
 
@@ -158,14 +158,14 @@ Sage will create the image, save it in your folder, and open it for you.
 
 ---
 
-## 🎚️ Modes — Controlling How Much Sage Does on Its Own
+## 🎚️ Modes - Controlling How Much Sage Does on Its Own
 
 Sage asks for your permission before making changes. You can change how
 cautious it is by typing `/mode` followed by a name:
 
 | Type this          | What it does                                        |
 |---------------------|-----------------------------------------------------|
-| `/mode plan`        | Only looks and suggests — **changes nothing**       |
+| `/mode plan`        | Only looks and suggests - **changes nothing**       |
 | `/mode normal`      | Asks you before every change *(this is the default)*|
 | `/mode auto-edits`  | Edits files automatically, asks before running tasks|
 | `/mode auto`        | Does everything automatically (still safe)          |
@@ -212,7 +212,7 @@ Sage remembers your choice for next time.
 
 ## 🔒 Is It Safe?
 
-Yes — Sage is built to be careful:
+Yes - Sage is built to be careful:
 
 - It only works inside the folder you open it in. It **can't touch the rest
   of your computer**.
@@ -225,7 +225,7 @@ Yes — Sage is built to be careful:
 ## 📤 Sharing Sage With Someone Else
 
 Want to give Sage to a colleague? There's no package to build or file to
-send — Sage is published on PyPI, so anyone can install it the same way you
+send - Sage is published on PyPI, so anyone can install it the same way you
 did.
 
 Just point them at this same guide, or tell them:
@@ -239,7 +239,7 @@ Just point them at this same guide, or tell them:
    ```
    pipx install litellm-sage
    ```
-3. Run `sage` — it walks them through entering their own endpoint URL and
+3. Run `sage` - it walks them through entering their own endpoint URL and
    API key (see "Your Settings" above), then starts right up.
 
 Each person uses their own API key in their own `.env` file, so nobody's
@@ -253,7 +253,7 @@ key.)*
 ## ❓ Something Went Wrong?
 
 **"sage is not recognized"**
-Close the terminal and open a brand-new one — pipx needs a fresh terminal to
+Close the terminal and open a brand-new one - pipx needs a fresh terminal to
 pick up the PATH changes. If it still doesn't work, run
 `python -m pipx ensurepath` again, then open another new terminal.
 
@@ -263,7 +263,7 @@ correct and that you can reach the server (e.g. you're on the right network
 or VPN if it's a private endpoint).
 
 **"[config error] Missing API_KEY" or "Missing BASE_URL"**
-This usually means your settings file exists but is missing a value — edit
+This usually means your settings file exists but is missing a value - edit
 `C:\Users\<your-name>\.sage\.env` and fill in `API_KEY` and `BASE_URL` (see
 "Your Settings" above). If the file doesn't exist at all, just run `sage`
 to get the guided setup.
@@ -283,7 +283,7 @@ model supports image analysis.
 
 ```
 Install:           pipx install litellm-sage
-First run:         sage   (walks you through setup — endpoint URL + API key)
+First run:         sage   (walks you through setup - endpoint URL + API key)
 Start Sage:        sage
 Ask something:     just type it and press Enter
 Look at an image:  /attach picture.png   then ask about it
